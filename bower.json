@@ -1,0 +1,19 @@
+{
+	"name": "BillSplit Web",
+	"version": "0.0.0",
+	"authors": [
+		"Jacob Prystowsky <jprystowsky@ohio-cpa.com>"
+	],
+	"license": "Apache 2.0",
+	"private": true,
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"bower_components",
+		"test",
+		"tests"
+	],
+	"dependencies": {
+		"angularjs": "*"
+	}
+}
