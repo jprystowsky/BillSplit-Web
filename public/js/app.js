@@ -12,6 +12,7 @@ angular.module('io.mapping.apps.web.billsplit', [
 	.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 		$routeProvider
 			.when('/home', {templateUrl: '/partials/home', controller: 'HomeCtrl'})
+			.when('/login', {templateUrl: '/partials/login', controller: 'LoginCtrl'})
 			.when('/bill-sets', {templateUrl: '/partials/bill-sets'})
 			.otherwise({redirectTo: '/home'});
 

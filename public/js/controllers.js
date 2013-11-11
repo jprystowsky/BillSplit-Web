@@ -10,10 +10,27 @@ angular.module('io.mapping.apps.web.billsplit.controllers', [])
 				$scope.name = 'Error!'
 			});
 	}])
+	.controller('LoginCtrl', ['auth', '$location', '$scope', function (auth, $location, $scope) {
+		//somehow force button render
+		$scope.$on(auth.messages.USER, function (event, user) {
+			if (user && user.id) {
+				$location.path("/");
+			}
+		});
+	}])
 	.controller('HomeCtrl', [function () {
 
 	}])
 	.controller('NavbarCtrl', ['$scope', 'auth', function ($scope, auth) {
+		var loggedOutItems = [
+			{
+				text: 'Login',
+				href: '/login'
+			}
+		];
+
+		$scope.navbarItems = loggedOutItems;
+
 		$scope.$on(auth.messages.USER, function (event, user){
 			if (user) {
 				$scope.navbarItems = [
@@ -27,7 +44,7 @@ angular.module('io.mapping.apps.web.billsplit.controllers', [])
 					}
 				];
 			} else {
-				$scope.navbarItems = [];
+				$scope.navbarItems = loggedOutItems;
 			}
 		})
 	}])
