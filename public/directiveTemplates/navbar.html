@@ -1,0 +1,5 @@
+<ul class="nav navbar-nav" ng-controller="NavbarCtrl">
+	<li ng-repeat="item in navbarItems">
+		<a ng-href="{{ item.href }}" ng-bind="item.text"></a>
+	</li>
+</ul>

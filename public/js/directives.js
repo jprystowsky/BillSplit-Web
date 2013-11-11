@@ -4,6 +4,12 @@
 
 
 angular.module('io.mapping.apps.web.billsplit.directives', [])
+	.directive('navbar', function () {
+		return {
+			replace: true,
+			templateUrl: '/directiveTemplates/navbar.html'
+		};
+	})
 	.directive('googleConnect', function () {
 		return {
 			replace: true,

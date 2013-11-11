@@ -13,6 +13,24 @@ angular.module('io.mapping.apps.web.billsplit.controllers', [])
 	.controller('HomeCtrl', [function () {
 
 	}])
+	.controller('NavbarCtrl', ['$scope', 'auth', function ($scope, auth) {
+		$scope.$on(auth.messages.USER, function (event, user){
+			if (user) {
+				$scope.navbarItems = [
+					{
+						text: 'Bill Sets',
+						href: '/bill-sets'
+					},
+					{
+						text: 'Friends',
+						href: '/friends'
+					}
+				];
+			} else {
+				$scope.navbarItems = [];
+			}
+		})
+	}])
 	.controller('GoogleConnectCtrl', ['$scope', '$window', 'auth', 'user', function ($scope, $window, auth, user) {
 		listenForUserAuth();
 
