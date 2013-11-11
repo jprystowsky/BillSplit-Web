@@ -10,8 +10,11 @@ angular.module('io.mapping.apps.web.billsplit', [
 		'io.mapping.apps.web.billsplit.controllers'
 	])
 	.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
-		$routeProvider.when('/home', {templateUrl: '/partials/home', controller: 'HomeCtrl'});
-		$routeProvider.otherwise({redirectTo: '/home'});
+		$routeProvider
+			.when('/home', {templateUrl: '/partials/home', controller: 'HomeCtrl'})
+			.when('/bill-sets', {templateUrl: '/partials/bill-sets'})
+			.otherwise({redirectTo: '/home'});
+
 		$locationProvider.html5Mode(true);
 	}])
 	.run(['$rootScope', function ($rootScope) {

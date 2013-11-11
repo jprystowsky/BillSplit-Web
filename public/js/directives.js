@@ -15,4 +15,10 @@ angular.module('io.mapping.apps.web.billsplit.directives', [])
 			replace: true,
 			templateUrl: '/directiveTemplates/googleConnect.html'
 		};
+	})
+	.directive('billSets', function () {
+		return {
+			replace: true,
+			templateUrl: '/directiveTemplates/billSets.html'
+		};
 	});
