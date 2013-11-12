@@ -1,3 +1,15 @@
 <div>
-	<p>Bill sets go here.</p>
+	<h1>Bill Sets</h1>
+
+	<div class="alert alert-success">
+		<i class="icon icon-question-sign icon-large"></i>
+
+		<p>Bill sets are collections of bills, along with the people responsible for them, and their obligated percentages.</p>
+
+		<p>For example, you might have one set of bills that you split 50-50 with your BFF, and another that you split 40-60 with your friend.</p>
+	</div>
+
+	<ul>
+		<li ng-repeat="bs in billSets">{{ bs }}</li>
+	</ul>
 </div>

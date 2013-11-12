@@ -105,8 +105,6 @@ angular.module('io.mapping.apps.web.billsplit.controllers', [])
 
 			// Render function to be triggered
 			$scope.render = function () {
-
-
 				// Render Google button (TODO: add logic to handle already logged in!)
 				gapi.signin.render('gConnect', {
 					scope: "https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email",
