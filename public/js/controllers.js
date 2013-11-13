@@ -48,6 +48,7 @@ angular.module('io.mapping.apps.web.billsplit.controllers', [])
 		})
 	}])
 	.controller('GoogleConnectCtrl', ['$scope', '$window', 'auth', 'user', function ($scope, $window, auth, user) {
+		console.log('load sdk');
 		// Load the SDK Asynchronously
 		(function () {
 			var po = document.createElement('script');
@@ -63,30 +64,37 @@ angular.module('io.mapping.apps.web.billsplit.controllers', [])
 		renderGoogleButton();
 
 		$window.onGooglePlusSignInCallback = function (data) {
+			console.log('onGooglePlusSignInCallback');
 			internalOnSignInCallback(data);
 		}
 
 		function internalOnSignInCallback(data) {
-			auth.connectGoogle(data.code,
-				function (data) {
-					console.log("Got OAuth token", data);
+			console.log('internalOnSignInCallback', data);
 
-					auth.login(function (loginData) {
-						console.log("Success logging in", loginData);
+			if (data.error) {
+				console.log('error in data response!');
+			} else {
+				auth.connectGoogle(data.code,
+					function (data) {
+						console.log("Got OAuth token", data);
 
-						user.getUser(function (user) {
-							console.log("Successfully got back user", user);
+						auth.login(function (loginData) {
+							console.log("Success logging in", loginData);
+
+							user.getUser(function (user) {
+								console.log("Successfully got back user", user);
+							}, function () {
+								console.log("Error getting back user");
+							});
 						}, function () {
-							console.log("Error getting back user");
+							console.log("Error logging in.");
 						});
-					}, function () {
-						console.log("Error logging in.");
-					});
-				},
-				function (data) {
-					console.log('Error getting OAuth token', data);
-				}
-			);
+					},
+					function (data) {
+						console.log('Error getting OAuth token', data);
+					}
+				);
+			}
 		}
 
 		function listenForUserAuth() {
@@ -98,23 +106,28 @@ angular.module('io.mapping.apps.web.billsplit.controllers', [])
 		}
 
 		function renderGoogleButton() {
+			console.log('renderGoogleButton');
 			// Wait for a raw javascript callback from Google's "done" message
 			$window.google_plus_sign_in_render = function () {
+				console.log('$window.google_plus_sign_in_render');
 				$scope.render();
 			};
 
 			// Render function to be triggered
 			$scope.render = function () {
+				console.log('$scope.render');
 				// Render Google button (TODO: add logic to handle already logged in!)
-				gapi.signin.render('gConnect', {
-					scope: "https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email",
-					requestvisibleactions: "http://schemas.google.com/AddActivity",
-					clientid: "671829466340.apps.googleusercontent.com", //TODO: Make flexible
-					accesstype: "offline",
-					callback: "onGooglePlusSignInCallback",
-					theme: "dark",
-					cookiepolicy: "single_host_origin"
-				});
+//				gapi.signin.render('gConnect', {
+//					scope: "https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email",
+//					clientid: "671829466340.apps.googleusercontent.com", //TODO: Make flexible
+//					redirecturi: "postmessage",
+//					accesstype: "offline",
+//					cookiepolicy: "single_host_origin",
+//					callback: "onGooglePlusSignInCallback",
+//					requestvisibleactions: "http://schemas.google.com/AddActivity",
+//					theme: "dark"
+//
+//				});
 			}
 		}
 	}]);

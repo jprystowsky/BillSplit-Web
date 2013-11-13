@@ -1,6 +1,16 @@
 <div ng-controller="GoogleConnectCtrl">
 	<div id="gConnect" ng-hide="user">
-		<button class="g-signin"></button>
+		<span
+				class="g-signin"
+				data-scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email"
+				data-clientid="671829466340.apps.googleusercontent.com"
+				data-redirecturi="postmessage"
+				data-accesstype="offline"
+				data-cookiepolicy="single_host_origin"
+				data-callback="onGooglePlusSignInCallback"
+				data-requestvisibleactions="http://schemas.google.com/AddActivity"
+				data-theme="dark">
+			</span>
 	</div>
 
 	<div ng-hide="user">
