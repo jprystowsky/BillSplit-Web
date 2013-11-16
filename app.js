@@ -62,6 +62,14 @@ app.get('*', routes.index);
 * Start Server
 */
 
-http.createServer(app).listen(app.get('port'), function () {
+var server = http.createServer(app).listen(app.get('port'), function () {
   console.log('Express server listening on port ' + app.get('port'));
+});
+
+/**
+ * Set a 60 second timeout to drop connections (we send Connection: Keep-Alive) so that we don't exhaust server
+ * resources.
+ */
+server.on('connection', function (socket) {
+	socket.setTimeout(60 * 1000);
 });
