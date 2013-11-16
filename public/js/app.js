@@ -3,6 +3,7 @@
 angular.module('io.mapping.apps.web.billsplit', [
 		'ngRoute',
 		'ngCookies',
+		'ngResource',
 		'LocalStorageModule',
 		'io.mapping.apps.web.billsplit.filters',
 		'io.mapping.apps.web.billsplit.services',
@@ -13,7 +14,7 @@ angular.module('io.mapping.apps.web.billsplit', [
 		$routeProvider
 			.when('/home', {templateUrl: '/partials/home', controller: 'HomeCtrl'})
 			.when('/login', {templateUrl: '/partials/login', controller: 'LoginCtrl'})
-			.when('/bill-sets', {templateUrl: '/partials/bill-sets'})
+			.when('/billsets', {templateUrl: '/partials/billsets'})
 			.otherwise({redirectTo: '/home'});
 
 		$locationProvider.html5Mode(true);

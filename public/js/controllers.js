@@ -10,6 +10,28 @@ angular.module('io.mapping.apps.web.billsplit.controllers', [])
 				$scope.name = 'Error!'
 			});
 	}])
+	.controller('BillSetAddCtrl', ['$scope', 'billset', function ($scope, billset) {
+		$scope.addBillSet = function () {
+			billset.create({
+				name: $scope.newBillSetName
+			}, function () {
+				$scope.getBillSets();
+			}, function () {
+				console.log('Oopsie');
+			});
+		};
+	}])
+	.controller('BillSetCtrl', ['$scope', 'billset', function ($scope, billset) {
+		$scope.getBillSets = function () {
+			billset.query(function (data) {
+				$scope.billSets = data;
+			}, function () {
+				console.log('Drat!');
+			});
+		};
+
+		$scope.getBillSets();
+	}])
 	.controller('LoginCtrl', ['auth', '$location', '$scope', function (auth, $location, $scope) {
 		$scope.$on(auth.messages.USER, function (event, user) {
 			if (user && user.id) {
@@ -35,7 +57,7 @@ angular.module('io.mapping.apps.web.billsplit.controllers', [])
 				$scope.navbarItems = [
 					{
 						text: 'Bill Sets',
-						href: '/bill-sets'
+						href: '/billsets'
 					},
 					{
 						text: 'Friends',

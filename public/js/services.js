@@ -50,6 +50,37 @@ angular.module('io.mapping.apps.web.billsplit.services', [])
 			}
 		};
 	}])
+	.service('billset', ['$http', function ($http) {
+		function _query(s, e) {
+			$http({
+				method: 'GET',
+				url: 'http://localhost:8080/billset',
+				withCredentials: true
+			})
+				.success(s)
+				.error(e);
+		}
+
+		function _create(d, s, e) {
+			$http({
+				method: 'POST',
+				url: 'http://localhost:8080/billset',
+				data: d,
+				withCredentials: true
+			})
+				.success(s)
+				.error(e);
+		}
+
+		return {
+			query: function (s, e) {
+				_query(s, e);
+			},
+			create: function (d, s, e) {
+				_create(d, s, e);
+			}
+		};
+	}])
 	.service('user', ['$http', function ($http) {
 		function _getUser(successCallback, errorCallback) {
 			$http({

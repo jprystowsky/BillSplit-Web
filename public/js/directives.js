@@ -21,4 +21,15 @@ angular.module('io.mapping.apps.web.billsplit.directives', [])
 			replace: true,
 			templateUrl: '/directiveTemplates/billSets.html'
 		};
+	})
+	.directive('billSetAdd', function () {
+		return {
+			replace: true,
+			templateUrl: '/directiveTemplates/billSetAdd.html'
+		}
+	})
+	.directive('wait', function () {
+		return {
+			templateUrl: '/directiveTemplates/wait.html'
+		}
 	});
